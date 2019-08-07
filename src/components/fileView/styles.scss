@@ -1,3 +1,32 @@
+@import '../../styles/variables.scss';
+ 
 .file-view {
-  
+  position: relative;
+  padding-top:68px;
+  padding-left:79px;
+
+  .file-title {
+    display: inline-flex;
+    .file-title-icon {
+      width: 41px;
+      height: 41px;
+    }
+    span {
+      font-family: Poppins;
+      font-weight: bold;
+      font-size: 36px;
+      line-height: 41px;
+      vertical-align: middle;
+      padding:0 0 0 20px;
+    }
+  }
+
+  .file {
+    position: relative;
+    top: 47px;
+    width: $FILE_WIDTH;
+    height: $FILE_HEIGHT;
+
+    border: $FILE_BORDER;
+  }
 }

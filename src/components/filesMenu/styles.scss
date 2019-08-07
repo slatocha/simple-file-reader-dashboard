@@ -1,0 +1,182 @@
+@import '../../styles/variables.scss';
+
+.files-menu {
+  background-color: $BLUE_COLOR;
+
+  position: fixed; 
+  top: 0;
+  left: 0;
+
+  height: $MENU_FILES_HEIGHT;
+  width: $MENU_FILES_WIDTH;
+
+  z-index: 999; 
+
+  overflow-x: hidden;
+  overflow: hidden;
+
+  transition: 0.5s; 
+
+  .files-list {
+    list-style: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+
+    margin:0 20px;
+
+    &-container {
+      // 133px = $BUTTON_UPLOAD_HEIGHT - ($UPLOAD_BUTTON_MARGIN_BOTTOM*2)
+      // 158px = $MAIN_LOGO_HEIGHT + $MAIN_LOGO_MARGIN_TOP + $MAIN_LOGO_MARGIN_BOTTOM
+      // 32px = $MAIN_FILES_TITLE_HEIGHT
+      max-height: calc(100% - (133px + 158px + 32px));
+      overflow-y: auto;
+    }
+  }
+
+  .files-upload {
+    &-container {
+      height: $BUTTON_UPLOAD_HEIGHT + ($BUTTON_UPLOAD_MARGIN_BOTTOM * 2);
+    }
+  }
+
+  .files-logo {
+    position: absolute;
+    top: $MAIN_LOGO_MARGIN_TOP;
+    left: $MAIN_LOGO_MARGIN_LEFT;
+
+    width: $MAIN_LOGO_WIDTH;
+    height: $MAIN_LOGO_HEIGHT;
+
+    &-container {
+      height: $MAIN_LOGO_HEIGHT + $MAIN_LOGO_MARGIN_TOP + $MAIN_LOGO_MARGIN_BOTTOM;
+    }
+  }
+
+  .files-fitle {
+    position: relative;
+    margin-top: $MAIN_FILES_TITLE_MARGIN_TOP;
+    margin-left: $MAIN_FILES_TITLE_MARGIN_LEFT;
+    
+    width: 100%;
+    height: $MAIN_FILES_TITLE_HEIGHT;
+
+    color: $MAIN_FILES_TITLE_COLOR;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: $MAIN_FILES_TITLE_HEIGHT - 1px; // 1px is subtracted in the figma frame from the line height to container height
+    /* identical to box height, or 175% */
+
+    text-transform: uppercase;
+    text-align: unset;
+
+    &-container {
+      height: $MAIN_FILES_TITLE_HEIGHT;
+    }
+  }
+
+  .list-button {
+    position: relative;
+    width: $BUTTON_LIST_WIDTH;
+    height: $BUTTON_LIST_HEIGHT;
+
+    color:$BUTTON_COLOR;
+    background-color: $BUTTON_LIST_BG_COLOR;
+
+    border-radius: $BUTTON_LIST_BORDER_RADIUS;
+    border: none;
+
+    // margin calculated between "Document 02" and "Document 03" button
+    margin-bottom: 26px; 
+
+    transition: .3s;
+    
+    &:hover,&:focus,&:active {
+      background-color: rgba($BUTTON_LIST_ACTION_BG_COLOR, $BUTTON_LIST_ACTION_OPACITY);
+      box-shadow: $BUTTON_BOX_SHADOW;
+      outline: none;
+    }
+
+    .list-button-icon {
+      position: absolute;
+      width:13.9px;
+      height:17px;
+
+      top: 24px;
+      left:40.54px;
+    }
+
+    .list-button-line-1 {
+      ul {
+        margin-block-start: 0;
+        margin-block-end: 0;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        padding-inline-start: 0;
+      }
+      li {
+        position: relative;
+        line-height: $MAIN_FILES_TITLE_HEIGHT - 1px; // same as fitle-title line height
+        text-align: left;
+        list-style: none;
+        margin-left: 74px;
+      }
+      li:first-of-type {
+        font-size:22px;
+        margin-top:15px;
+        font-weight: 600;
+      }
+      li:last-of-type {
+        color: $MAIN_FILES_TITLE_COLOR;
+        font-size:18px;
+      }
+    }
+  }
+
+  .upload-button {
+    position: absolute;
+    bottom: $BUTTON_UPLOAD_MARGIN_BOTTOM;
+    left: $BUTTON_UPLOAD_MARGIN_LEFT;
+
+    width: $BUTTON_UPLOAD_WIDTH;
+    height: $BUTTON_UPLOAD_HEIGHT;
+
+    color:$BUTTON_COLOR;
+    background-color: $BUTTON_UPLOAD_BG_COLOR;
+
+    border-radius: $BUTTON_UPLOAD_BORDER_RADIUS;
+    border: none;
+
+    transition: .3s;
+    
+    &:hover,&:focus,&:active {
+      background-color: darken($BUTTON_UPLOAD_ACTION_BG_COLOR, 10%);
+      box-shadow: $BUTTON_BOX_SHADOW;
+      outline: none;
+    }
+
+    .upload-button-icon {
+      position: absolute;
+
+      width:33px;
+      height:22px;
+
+      top: 21.5px;
+      left:59px;
+    }
+
+    span {
+      position: absolute;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 33px;
+      top: 17px;
+      left: 106px;
+    }
+  }
+}
