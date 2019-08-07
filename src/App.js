@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import Dashboard from './pages/dashboard'
+import { pdfjs } from 'react-pdf';
+// set up a global worker for pdf-js
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 /**
  * App.js is for a reason very empty

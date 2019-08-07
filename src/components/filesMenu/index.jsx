@@ -23,16 +23,19 @@ class FilesMenu extends Component {
       messages:{
         "files.title":"Files",
         "button.files.upload":"Upload Files",
+        "files.title.upload.needed":"Try to upload some files..."
       }
     }
 
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.handleDocumentUpload = this.handleDocumentUpload.bind(this);
+    this.onFileChange = this.onFileChange.bind(this);
   }
 
   static props = {
     files: PropTypes.array.isRequired,
     onDocumentClick: PropTypes.func.isRequired,
+    onDocumentUpload: PropTypes.func.isRequired,
   }
 
   renderItem = (data, index) => {
@@ -64,10 +67,11 @@ class FilesMenu extends Component {
     let {messages} = this.state;
     return (
       <div className="files-upload-container">
+        <input id="file-input" type="file" accept=".pdf, .txt" onChange={this.onFileChange} ref="input"/>
         <button className="upload-button" onClick={this.handleDocumentUpload}>
           <img src={uploadBtnIcon} className="upload-button-icon" alt="upload-button-icon" />
           <span>{messages["button.files.upload"] || "Upload Files"}</span>
-      </button>
+        </button>
       </div>
     );
   }
@@ -81,12 +85,11 @@ class FilesMenu extends Component {
         <div className="files-title-container">
           <span className="files-fitle">{messages["files.title"] || "Files"}</span>
         </div>
-      : ""
+      : <span className="files-fitle">{messages["files.title.upload.needed"] || "Try to upload some files..."}</span>
     );
   }
 
   renderLogo = () => {
-    let {burgerAvailable} = this.state;
     return (
       <div className="files-logo-container">
         <img src={logo} className={"files-logo"} alt="logo" />
@@ -137,7 +140,10 @@ class FilesMenu extends Component {
 
   // handle file button upload
   handleDocumentUpload = () => {
-    console.log("Document upload")
+    let fileInput = document.getElementById('file-input');
+    if (fileInput) {
+      fileInput.click();
+    }
   }
 
   // window resize hanlder
@@ -155,6 +161,30 @@ class FilesMenu extends Component {
     // this is just for demo purpose and can be handled better
     if (_width > 1001 && this.state.burgerAvailable) {
       this.setState({burgerAvailable:false});
+    }
+  }
+
+  onFileChange(e, file) {
+    let _file = file || e.target.files[0], pattern = /pdf.*|text.*/;
+
+    if (!_file || _file == null) return;
+        
+    if ("type" in _file && !_file.type.match(pattern)) {
+      alert('Invalid file-type, please use .txt or .pdf files.');
+      return;
+    }
+    console.log(_file)
+    // read a plain text file
+    if (_file.type.match(/text.*/)) {
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        this.props.onDocumentUpload({id:_file.name, name:_file.name, data:reader.result, description:"Nam vel porta velit", plainText:_file.type.match(/text.*/) });
+      }
+      reader.readAsText(_file);
+    }
+    // read a pdf file
+    else {
+      this.props.onDocumentUpload({id:_file.name, name:_file.name, data:e.target.files[0], description:"anima sana in corpore sano", plainText:_file.type.match(/text.*/) });
     }
   }
 }

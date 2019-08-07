@@ -1,5 +1,9 @@
 @import '../../styles/variables.scss';
 
+input[type='file'] {
+  display: none;
+}
+
 .files-menu {
   background-color: $BLUE_COLOR;
 
@@ -138,6 +142,11 @@
         font-size:22px;
         margin-top:15px;
         font-weight: 600;
+
+        width: $BUTTON_LIST_WIDTH - 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       li:last-of-type {
         color: $MAIN_FILES_TITLE_COLOR;

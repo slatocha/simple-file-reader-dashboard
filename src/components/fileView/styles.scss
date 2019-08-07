@@ -32,7 +32,31 @@
     background-color: $FILE_BG_COLOR;
   
     border: $FILE_BORDER;
+
+    overflow: auto;
+
+    .next-button {
+      position: absolute;
+      bottom:10px;
+      right:10px;
+
+      width:$BUTTON_LIST_WIDTH/2;
+      height:$BUTTON_LIST_HEIGHT/2;
+
+      box-shadow: $BUTTON_BOX_SHADOW;
+      color: $BUTTON_COLOR;
+
+      background-color: rgba($BLUE_COLOR, 0.5);
+      border-radius: $BUTTON_UPLOAD_BORDER_RADIUS;
+
+      border:none;
+      outline: none;
+      &:active,&:hover {
+        background-color: rgba($BLUE_COLOR, 0.8);
+      }
+    }
   }
+
   @media screen and (max-width:$BREAKPOINT_MAX) {
     .file { width:100%; min-height:50%; }
   }
