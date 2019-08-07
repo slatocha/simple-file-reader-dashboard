@@ -1,6 +1,37 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+U can use this project as it is, just to demonstrate a simple file upload of .txt or pdf .files, imporvements are still to be made
+ToDo List:
+- optional file removal
+- overlay on background when selecting files and savely capturing user cancel input 
+- debugging
+- responsivness testing
+- browser support testing
+- ...and the list goes on...
 
-U can use this project as it is, just to demonstrate a simple file upload of .txt or pdf .files
+## How to install ##
+*Please make sure that you are in the correct dir on your machine.*
+
+#### First,  pull the clean repo ####
+```
+#!bash
+
+git checkout whatever
+
+```
+#### Finally, install all node_modules defined in package.json ####
+*Please make sure that you have node.js, npm (node package manager) and react-native-cli (cli: command line interface) installed.*
+```
+#!bash
+
+npm install
+
+```
+
+
+
+## How to build ##
+*Please make sure that you are in the correct dir on your machine.*
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

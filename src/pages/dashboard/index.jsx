@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import './styles.scss';
 
 import FilesMenu from '../../components/filesMenu';
 import FileView from '../../components/fileView';
+
+import './styles.scss';
 
 class Dashboard extends Component {
 
@@ -10,6 +11,7 @@ class Dashboard extends Component {
     super(props);
 
     this.state = {
+      overlayActive: false,
       currentFile:null,
       files:[
         // {id:1, name:"Document 01", description:"Nam vel porta velit"}, 
@@ -29,12 +31,15 @@ class Dashboard extends Component {
   }
 
   render() {
-    let {files, currentFile} = this.state;
+    let {overlayActive, files, currentFile} = this.state;
     return (
-      <div className="dashboard">
-        <FilesMenu files={files} onDocumentClick={(file) => this.setState({currentFile:file})} onDocumentUpload={file => this.handleFileUpload(file)}/>
-        <FileView file={currentFile}/>
-      </div>
+      [
+        // overlayActive ? <div key="dashboard-overlay" className="dashboard-overlay"></div> : "",
+        <div key="dashboard" className="dashboard">
+          <FilesMenu files={files} onDocumentClick={(file) => this.setState({currentFile:file})} onDocumentUpload={file => this.handleFileUpload(file)} onOverlayChange={overlay => this.setState({overlayActive:overlay})}/>
+          <FileView file={currentFile}/>
+        </div>
+      ]
     );
   }
 

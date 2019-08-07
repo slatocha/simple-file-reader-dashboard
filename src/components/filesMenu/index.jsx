@@ -36,6 +36,7 @@ class FilesMenu extends Component {
     files: PropTypes.array.isRequired,
     onDocumentClick: PropTypes.func.isRequired,
     onDocumentUpload: PropTypes.func.isRequired,
+    onOverlayChange: PropTypes.func.isRequired, // show an overaly when the user tries to upload a file
   }
 
   renderItem = (data, index) => {
@@ -143,6 +144,7 @@ class FilesMenu extends Component {
     let fileInput = document.getElementById('file-input');
     if (fileInput) {
       fileInput.click();
+      this.props.onOverlayChange(true);
     }
   }
 
@@ -173,7 +175,7 @@ class FilesMenu extends Component {
       alert('Invalid file-type, please use .txt or .pdf files.');
       return;
     }
-    console.log(_file)
+
     // read a plain text file
     if (_file.type.match(/text.*/)) {
       let reader = new FileReader();
@@ -186,6 +188,7 @@ class FilesMenu extends Component {
     else {
       this.props.onDocumentUpload({id:_file.name, name:_file.name, data:e.target.files[0], description:"anima sana in corpore sano", plainText:_file.type.match(/text.*/) });
     }
+    this.props.onOverlayChange(false);
   }
 }
 
