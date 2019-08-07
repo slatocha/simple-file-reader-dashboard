@@ -96,6 +96,7 @@
 
     transition: .3s;
     
+    &.list-button-active,
     &:hover,&:focus,&:active {
       background-color: rgba($BUTTON_LIST_ACTION_BG_COLOR, $BUTTON_LIST_ACTION_OPACITY);
       box-shadow: $BUTTON_BOX_SHADOW;

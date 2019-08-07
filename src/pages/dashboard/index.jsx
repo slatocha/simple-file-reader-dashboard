@@ -12,16 +12,16 @@ class Dashboard extends Component {
     this.state = {
       currentFile:null,
       files:[
-        {name:"Document 01", description:"Nam vel porta velit"}, 
-        {name:"Document 02", description:"Nam vel porta velit"},
-        {name:"Document 03", description:"Nam vel porta velit"}, 
-        {name:"Document 04", description:"Nam vel porta velit"},
-        {name:"Document 05", description:"Nam vel porta velit"}, 
-        {name:"Document 06", description:"Nam vel porta velit"},
-        {name:"Document 07", description:"Nam vel porta velit"}, 
-        {name:"Document 08", description:"Nam vel porta velit"},
-        {name:"Document 09", description:"Nam vel porta velit"}, 
-        {name:"Document 10", description:"Nam vel porta velit"},
+        {id:1, name:"Document 01", description:"Nam vel porta velit"}, 
+        {id:2, name:"Document 02", description:"Nam vel porta velit"},
+        {id:3, name:"Document 03", description:"Nam vel porta velit"}, 
+        {id:4, name:"Document 04", description:"Nam vel porta velit"},
+        {id:5, name:"Document 05", description:"Nam vel porta velit"}, 
+        {id:6, name:"Document 06", description:"Nam vel porta velit"},
+        {id:7, name:"Document 07", description:"Nam vel porta velit"}, 
+        {id:8, name:"Document 08", description:"Nam vel porta velit"},
+        {id:9, name:"Document 09", description:"Nam vel porta velit"}, 
+        {id:10, name:"Document 10", description:"Nam vel porta velit"},
       ]
     }
 

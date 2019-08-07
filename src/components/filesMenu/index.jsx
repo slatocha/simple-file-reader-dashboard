@@ -13,6 +13,7 @@ class FilesMenu extends Component {
     super(props);
 
     this.state = {
+      currentFile:null,
       messages:{
         "files.title":"Files",
         "button.files.upload":"Upload Files",
@@ -29,9 +30,10 @@ class FilesMenu extends Component {
   }
 
   renderItem = (data, index) => {
+    let {currentFile} = this.state;
     return (
       <li key={"button-"+index}>
-        <button className="list-button" onClick={() => this.handleDocumentClick(data)}>
+        <button className={"list-button" + ((currentFile && currentFile != null && "id" in currentFile && currentFile.id == data.id) ? " list-button-active" : "")} onClick={() => this.handleDocumentClick(data)}>
           <div className="list-button-line-1">
             <img src={listBtnIcon} className="list-button-icon" alt="list-button-icon" />
             <ul><li>{data.name}</li><li>{data.description}</li></ul>
@@ -100,6 +102,7 @@ class FilesMenu extends Component {
   // handle file button click
   handleDocumentClick = (file) => {
     this.props.onDocumentClick(file);
+    this.setState({currentFile:file});
   }
 
   // handle file button upload
