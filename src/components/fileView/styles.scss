@@ -61,3 +61,10 @@
     .file { width:100%; min-height:50%; }
   }
 }
+@media screen and (max-width:$BREAKPOINT_MAX) {
+  .file-view {
+    padding-top:50px;
+    padding-left:25px;
+    padding-right:45px;
+  }
+}
