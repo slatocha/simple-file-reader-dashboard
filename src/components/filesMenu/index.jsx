@@ -4,8 +4,13 @@ import PropTypes from 'prop-types';
 import logo from '../../resources/logos/logo_sm_white.png';
 import uploadBtnIcon from '../../resources/icons/iconUploadFile.svg';
 import listBtnIcon from '../../resources/icons/iconListDocument.svg';
+import Burger from '../../resources/icons/burger.svg';
+import BurgerBite from '../../resources/icons/burgerBite.svg';
 
 import './styles.scss';
+
+// variable to keep track of a user window resize
+let resizingWindow;
 
 class FilesMenu extends Component {
 
@@ -13,6 +18,7 @@ class FilesMenu extends Component {
     super(props);
 
     this.state = {
+      burgerAvailable:false,
       currentFile:null,
       messages:{
         "files.title":"Files",
@@ -33,7 +39,7 @@ class FilesMenu extends Component {
     let {currentFile} = this.state;
     return (
       <li key={"button-"+index}>
-        <button className={"list-button" + ((currentFile && currentFile != null && "id" in currentFile && currentFile.id == data.id) ? " list-button-active" : "")} onClick={() => this.handleDocumentClick(data)}>
+        <button className={"list-button" + ((currentFile && currentFile != null && "id" in currentFile && currentFile.id === data.id) ? " list-button-active" : "")} onClick={() => this.handleDocumentClick(data)}>
           <div className="list-button-line-1">
             <img src={listBtnIcon} className="list-button-icon" alt="list-button-icon" />
             <ul><li>{data.name}</li><li>{data.description}</li></ul>
@@ -66,14 +72,6 @@ class FilesMenu extends Component {
     );
   }
 
-  renderLogo = () => {
-    return (
-      <div className="files-logo-container">
-        <img src={logo} className="files-logo" alt="logo" />
-      </div>
-    );
-  }
-
   renderFilesTitle = () => {
     let { props:{files},
           state:{messages}} = this;
@@ -87,14 +85,46 @@ class FilesMenu extends Component {
     );
   }
 
-  render = () => {
+  renderLogo = () => {
+    let {burgerAvailable} = this.state;
     return (
-      <div className="files-menu">
-        {this.renderLogo()}
-        {this.renderFilesTitle()}
-        {this.renderItemList()}
-        {this.renderItemUpload()}
+      <div className="files-logo-container">
+        <img src={logo} className={"files-logo"} alt="logo" />
+        <div className="responsive-files-menu">
+          <button className="responsive-files-menu-button" onClick={() => this.setState({burgerAvailable:!this.state.burgerAvailable})}><img src={BurgerBite} alt="Icon made by Pixel Perfect from www.flaticon.com"/></button>
+        </div>
       </div>
+    );
+  }
+
+  renderResponsiveMenu = () => {
+    return (
+      <div key="responsive-files-menu" className="responsive-files-menu">
+        <img src={logo} className={"files-logo"} alt="logo" />
+        <button className="responsive-files-menu-button" onClick={() => this.setState({burgerAvailable:!this.state.burgerAvailable})}><img src={Burger} alt="Icon made by Pixel Perfect from www.flaticon.com"/></button>
+      </div>
+    );
+  }
+
+  componentWillMount() {
+    window.addEventListener("resize", () => this.windowSizeChanged());
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", () => this.windowSizeChanged());
+  }
+
+  render = () => {
+    let {burgerAvailable} = this.state; 
+    return (
+      [
+        !burgerAvailable ? this.renderResponsiveMenu() : "",
+        <div key="files-menu" className={"files-menu" + (burgerAvailable ? " files-menu-open" : "")}>
+          {this.renderLogo()}
+          {this.renderFilesTitle()}
+          {this.renderItemList()}
+          {this.renderItemUpload()}
+        </div>
+      ]
     );
   }
 
@@ -108,6 +138,24 @@ class FilesMenu extends Component {
   // handle file button upload
   handleDocumentUpload = () => {
     console.log("Document upload")
+  }
+
+  // window resize hanlder
+  windowSizeChanged() {
+    clearTimeout(resizingWindow);
+    resizingWindow = setTimeout(() => {this.handleResize()},500);
+  }
+
+  handleResize() {
+    // get the window dimensions
+    // let _height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    let _width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+    // determin the burgerAvailable state according to window size
+    // this is just for demo purpose and can be handled better
+    if (_width > 1001 && this.state.burgerAvailable) {
+      this.setState({burgerAvailable:false});
+    }
   }
 }
 

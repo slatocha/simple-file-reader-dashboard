@@ -8,7 +8,7 @@
   left: 0;
 
   height: $MENU_FILES_HEIGHT;
-  width: $MENU_FILES_WIDTH;
+  // width: $MENU_FILES_WIDTH;
 
   z-index: 999; 
 
@@ -16,6 +16,13 @@
   overflow: hidden;
 
   transition: 0.5s; 
+
+  &.files-menu-open {
+    width: $MENU_FILES_WIDTH;
+  }
+  &.files-menu-closed {
+    width: 0;
+  }
 
   .files-list {
     list-style: none;
@@ -179,5 +186,70 @@
       top: 17px;
       left: 106px;
     }
+  }
+}
+
+.responsive-files-menu {
+  background-color: $BLUE_COLOR;
+  height:$MAIN_LOGO_HEIGHT + $MAIN_LOGO_MARGIN_TOP + $MAIN_LOGO_MARGIN_BOTTOM;
+  width: 100%;
+
+  .files-logo {
+    position: absolute;
+    top: $MAIN_LOGO_MARGIN_TOP;
+    left: $MAIN_LOGO_MARGIN_LEFT;
+
+    width: $MAIN_LOGO_WIDTH;
+    height: $MAIN_LOGO_HEIGHT;
+  }
+
+  .responsive-files-menu-button {
+    position: absolute;
+    top: 60px;
+    left: 280px;
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    border:none;
+    outline: none;
+  }
+}
+
+@media screen and (max-width:$BREAKPOINT_MAX) {
+  .files-menu { width:0px; }
+  .responsive-files-menu {
+    animation-name: responsive-animation-in;
+    animation-duration: .3s;
+  }
+}
+@media screen and (min-width:$BREAKPOINT_MAX + 1px) {
+  .files-menu { width:$MENU_FILES_WIDTH !important; }
+  .responsive-files-menu {
+    visibility: hidden;
+    display: none;
+    animation-name: responsive-animation-out;
+    animation-duration: .3s;
+  }
+}
+@keyframes responsive-animation-out {
+  from {
+    visibility: visible;
+    width:100%;
+  }
+  to {
+    width:0%;
+    visibility: hidden;
+    display: none;
+  }
+}
+
+@keyframes responsive-animation-in {
+  from {
+    visibility: hidden;
+    width:0%;
+  }
+  to {
+    width:100%;
+    visibility: visible;
   }
 }

@@ -4,6 +4,7 @@
   position: relative;
   padding-top:68px;
   padding-left:79px;
+  padding-right:79px;
 
   .file-title {
     display: inline-flex;
@@ -24,9 +25,15 @@
   .file {
     position: relative;
     top: 47px;
+
     width: $FILE_WIDTH;
     height: $FILE_HEIGHT;
 
+    background-color: $FILE_BG_COLOR;
+  
     border: $FILE_BORDER;
+  }
+  @media screen and (max-width:$BREAKPOINT_MAX) {
+    .file { width:100%; min-height:50%; }
   }
 }

@@ -3,6 +3,8 @@
  * this is the main containter for all app styling variables
  */
 
+$BREAKPOINT_MAX: 1000px;
+
 /*
  * main application colors
  */
@@ -18,6 +20,7 @@ $YELLOW_COLOR:#F7B633;
  */
 $FILE_WIDTH: 634px;
 $FILE_HEIGHT: 802px;
+$FILE_BG_COLOR: $WHITE_COLOR;
 $FILE_BORDER: 10px dashed #FF0000;
 
 $MENU_FILES_WIDTH: 384px;
