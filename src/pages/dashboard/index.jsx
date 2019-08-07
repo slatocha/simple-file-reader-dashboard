@@ -31,7 +31,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    let {overlayActive, files, currentFile} = this.state;
+    let {files, currentFile} = this.state;
     return (
       [
         // overlayActive ? <div key="dashboard-overlay" className="dashboard-overlay"></div> : "",
